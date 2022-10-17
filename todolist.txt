@@ -1,0 +1,44 @@
+Todo - scout.js
+	pointcalculation
+
+
+
+players.js
+- 엑셀 불러들여 오른쪽에 리스팅하는 것 완료
+- db저장/overwrite 완료
+
+lottery.js
+-RandomNumberGen
+	추첨하면 가운데 소환사 표시 완료
+	추첨 후 소환사 db에서 지우기 완료
+- resetPlayerSlot
+	추첨 후 초기화 완료
+
+
+scout.js
+- assignPlayer(info)
+	밑의 과정 모두 완료 후 작동될듯
+	pointcalculation
+	scoutPlayer
+	paintPlayer 
+	resetplayerslot V
+	
+- scoutPlayer
+	db에 add 완료
+- pointCalculation
+	계산 완료 및 db update 가능
+	가끔 이상한 팀이 깎임
+	
+- paintPlayer()
+	paint 할 방법 간구해야됨
+- paintRemainingPoint()
+	assignplayer하고 paint가 잘 안됨
+- resetPoints()
+	리셋은 잘됨
+	
+timer.js 영향없음
+burial.js
+	아직
+	sendToBurialList
+	sendBurialToPlayer
+	paintBurialPlayers

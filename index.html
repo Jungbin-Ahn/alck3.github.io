@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  <title>ALCK 경매</title>
+</head>
+
+<body>
+  <video autoplay muted loop>
+    <source src="./resource/ionia.mp4" type="video/mp4" />
+  </video>
+  <div class="main">
+    <div id="team-table">
+      <h2>Team</h2>
+      <div id="point">
+        <div id="point-status">
+          <span></span>
+          <span></span>
+        </div>
+        <div id="point-status">
+          <span></span>
+          <span></span>
+        </div>
+        <div id="point-status">
+          <span></span>
+          <span></span>
+        </div>
+        <div id="point-status">
+          <span></span>
+          <span></span>
+        </div>
+        <div id="point-status">
+          <span></span>
+          <span></span>
+        </div>
+        <div id="point-status">
+          <span></span>
+          <span></span>
+        </div>
+        <div id="point-status">
+          <span></span>
+          <span></span>
+        </div>
+        <div id="point-status">
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div id="team">
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+      </div>
+    </div>
+    <div id="center">
+      <div>
+        <h1>ALCK</h1>
+        <h2>Season 3</h2>
+        <header>
+          <input type="file" onchange="readExcel()" />
+          <a href="./resource/양식.xlsx" download="양식"><button type="button">양식 Download</button></a>
+        </header>
+      </div>
+      <div>
+        <div id="timer">
+          <span>10s</span>
+          <button>타이머 시작</button>
+          <button>타이머 리셋</button>
+        </div>
+        <div class="player-info">
+          <button id="playerbutton">추첨</button>
+          <span id="playername"></span>
+          <span id="playerid"></span>
+          <span id="tier"></span>
+          <span id="position"></span>
+          <span id="champion"></span>
+          <span id="intro"></span>
+        </div>
+        <div id="scout">
+          <select id="team-number">
+            <option value="TEAM1">TEAM 1</option>
+            <option value="TEAM2">TEAM 2</option>
+            <option value="TEAM3">TEAM 3</option>
+            <option value="TEAM4">TEAM 4</option>
+            <option value="TEAM5">TEAM 5</option>
+            <option value="TEAM6">TEAM 6</option>
+            <option value="TEAM7">TEAM 7</option>
+            <option value="TEAM8">TEAM 8</option>
+          </select>
+          <form id="scout-form">
+            <input type="number" step="5" min="0" placeholder="포인트를 적어주세요" />
+            <button>Send</button>
+          </form>
+        </div>
+      </div>
+      <div>
+        <button id="burialButton">유찰</button>
+        <button id="burial-to-players" class="hidden">유찰경매 시작!</button>
+      </div>
+    </div>
+    <div id="right">
+      <div>
+        <h2>Players</h2>
+        <div id="player-list"></div>
+      </div>
+      <div>
+        <h2>유찰</h2>
+        <div id="burial-list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  <script src="js/players.js"></script>
+  <script src="js/lottery.js"></script>
+  <script src="js/burial.js"></script>
+  <script src="js/scout.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
+
+</body>
+
+</html>
