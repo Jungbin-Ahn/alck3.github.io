@@ -10,7 +10,7 @@ const firebaseApp = firebase.initializeApp({
 });
 
 const db = firebaseApp.firestore();
-const players = db.collection("players");
+const playersDB = db.collection("players");
 
 function readExcel() {
   let input = event.target;
@@ -23,30 +23,51 @@ function readExcel() {
       let rows = XLSX.utils.sheet_to_json(workBook.Sheets[sheetName]);
       temp = rows;
       sendPlayerToDB(temp);
-      paintPlayers();
     });
   };
+  paintPlayersDB();
   reader.readAsBinaryString(input.files[0]);
 }
 
-function paintPlayers() {
-  playerList.innerText = "";
-  players.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      const span = document.createElement("span");
-      span.innerText = doc.data().Name;
-      playerList.appendChild(span);
-    });
-  });
+function resetAll() {
+  lotteryIndex = [];
+  resetPoints();
+  resetPlayers();
+  db.collection("selectedplayer").doc("selected").delete();
+  resetPlayerSlot();
 }
 
-function sendPlayerToDB(temp) {
-  for (let i = 0; i < temp.length; i++) {
-    players
+function sendPlayerToDB(playerslist) {
+  for (let i = 0; i < playerslist.length; i++) {
+    lotteryIndex.push(i);
+    playersDB
       .doc(`player${i}`)
-      .set(temp[i])
+      .set(playerslist[i])
       .then(() => {
         console.log("Successfully written");
       });
   }
 }
+
+function paintPlayersDB() {
+  playerList.innerText = "";
+  playersDB.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      console.log("함수");
+      const span = document.createElement("span");
+      span.innerText = doc.data().Name;
+      playerList.appendChild(span);
+    });
+  });
+  console.log("players painted");
+}
+playersDB.onSnapshot((snapshot) => {
+  snapshot.docChanges().forEach((change) => {
+    if (change.type === "removed") {
+      console.log("리스너");
+      playerList.innerText = "";
+      paintPlayersDB();
+    }
+  });
+});
+paintPlayersDB();

@@ -13,8 +13,6 @@ function assignPlayer(info) {
   } else {
     pointCalculation(teamSelect.value, pointInput.value);
     scoutPlayer(teamSelect.value);
-    resetPlayerSlot();
-    paintPlayer();
     pointInput.value = "";
   }
 }
@@ -24,12 +22,23 @@ function scoutPlayer(t) {
     .get()
     .then((doc) => {
       tempList = doc.data().member;
-      tempList.push(chosenPlayer.Name);
+      tempList.push(lotteryPlayer.Name);
       teamsDB.doc(t).set({ member: tempList });
+      console.log("scouted to", t);
     });
 }
 
-function paintPlayer() {}
+function paintScoutedPlayer() {
+  var i = 1;
+  teamsDB.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      let teamSection = document.querySelector(`#team :nth-child(${i})`);
+      teamSection.innerHTML = doc.data().member;
+      teamSection.innerHTML = teamSection.innerHTML.replaceAll(",", " | ");
+      i++;
+    });
+  });
+}
 
 function pointCalculation(t, p) {
   pointsDB
@@ -75,6 +84,11 @@ function resetPlayers() {
 }
 
 scoutForm.addEventListener("submit", assignPlayer);
+
 pointsDB.onSnapshot((doc) => {
   paintRemainingPoint();
+});
+teamsDB.onSnapshot((doc) => {
+  paintScoutedPlayer();
+  resetPlayerSlot();
 });

@@ -5,36 +5,51 @@ const tier = document.querySelector("#tier");
 const position = document.querySelector("#position");
 const champion = document.querySelector("#champion");
 const intro = document.querySelector("#intro");
-
-let chosenPlayer;
+let lotteryIndex = [];
+let lotteryPlayer;
 
 function randomNumberGenerator() {
-  if (players.length === 0) {
-    alert("본 추첨 끝!!");
-    burialToPlayerButton.classList.remove("hidden");
-  } else {
-    players.get().then((snap) => {
-      arr = Math.floor(Math.random() * snap.size);
-      players
-        .doc(`player${arr}`)
-        .get()
-        .then((doc) => {
-          chosenPlayer = doc.data();
-          playerName.innerText = `이름: ${chosenPlayer.Name}`;
-          playerId.innerText = `소환사명: ${chosenPlayer.ID}`;
-          tier.innerText = `티어: ${chosenPlayer.Tier}`;
-          position.innerText = `포지션: ${chosenPlayer.Position}`;
-          intro.innerText = `자기소개: ${chosenPlayer.Intro}`;
-          players
+  playersDB.get().then((snap) => {
+    arr = lotteryIndex[Math.floor(Math.random() * lotteryIndex.length)];
+    console.log(arr);
+    playersDB
+      .doc(`player${arr}`)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          db.collection("selectedplayer")
+            .doc("selected")
+            .set(doc.data())
+            .then();
+          playersDB
             .doc(`player${arr}`)
             .delete()
             .then(() => {
-              console.log("deleted");
-              paintPlayers();
+              lotteryIndex.splice(lotteryIndex.indexOf(arr), 1);
+              console.log(arr, " deleted", "=> ", lotteryIndex);
             });
-        });
+        } else {
+          alert("본 추첨 끝!!");
+          resetPlayerSlot();
+          burialToPlayerButton.classList.remove("hidden");
+        }
+      });
+  });
+}
+
+function paintPlayerToCenter() {
+  console.log("paintplayertocenter");
+  db.collection("selectedplayer")
+    .doc("selected")
+    .get()
+    .then((doc) => {
+      lotteryPlayer = doc.data();
+      playerName.innerText = `이름: ${doc.data().Name}`;
+      playerId.innerText = `소환사명: ${doc.data().ID}`;
+      tier.innerText = `티어: ${doc.data().Tier}`;
+      position.innerText = `포지션: ${doc.data().Position}`;
+      intro.innerText = `자기소개: ${doc.data().Intro}`;
     });
-  }
 }
 
 function resetPlayerSlot() {
@@ -47,3 +62,4 @@ function resetPlayerSlot() {
 }
 
 playerButton.addEventListener("click", randomNumberGenerator);
+db.collection("selectedplayer").onSnapshot((doc) => paintPlayerToCenter());

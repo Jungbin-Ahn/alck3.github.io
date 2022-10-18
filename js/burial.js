@@ -1,5 +1,4 @@
-burials = [];
-
+BURIALSCOUNT = 0;
 const burialButton = document.querySelector("#burialButton");
 const burialToPlayerButton = document.querySelector("#burial-to-players");
 const burialList = document.querySelector("#burial-list");
@@ -9,34 +8,46 @@ function sendToBurialList() {
   if (playerName.innerText === "") {
     alert("플레이어를 추첨해주세요!");
   } else {
-    burials.push(chosenPlayer);
-    resetPlayerSlot();
-    paintBurialPlayers();
-    
+    burialsDB
+      .doc(`player${BURIALSCOUNT}`)
+      .set(lotteryPlayer)
+      .then(console.log("burial success"));
+    BURIALSCOUNT++;
   }
 }
 function sendBurialToPlayer() {
-  if (burials.length === 0) {
+  if (BURIALSCOUNT === 0) {
     alert("유찰자가 없습니다!");
   } else {
-    players = burials;
+    lotteryIndex = Array.from({ length: BURIALSCOUNT }, (v, i) => i);
+
+    burialsDB.get().then((snap) => {
+      snap.forEach((doc) => {
+        playersDB.doc(doc.id).set(doc.data());
+      });
+    });
     alert("유찰경매를 시작하겠습니다!");
-    burialList.innerText = '';
-    paintPlayers();
-    burialToPlayerButton.classList.remove("hidden")
+    burialList.innerText = "";
+    paintPlayersDB();
+    burialToPlayerButton.classList.remove("hidden");
   }
 }
 
-function paintBurialPlayers(){
+function paintBurialPlayers() {
+  console.log("bural painted");
   burialList.innerText = "";
-  for (let i = 0; i < burials.length; i++) {
-    const span = document.createElement("span");
-    span.innerText = burials[i].Name;
-    burialList.appendChild(span);
-  }
+  burialsDB.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const span = document.createElement("span");
+      span.innerText = doc.data().Name;
+      burialList.appendChild(span);
+    });
+  });
 }
-
-
 
 burialButton.addEventListener("click", sendToBurialList);
 burialToPlayerButton.addEventListener("click", sendBurialToPlayer);
+burialsDB.onSnapshot((doc) => {
+  resetPlayerSlot();
+  paintBurialPlayers();
+});
