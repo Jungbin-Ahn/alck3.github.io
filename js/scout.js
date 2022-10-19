@@ -19,13 +19,10 @@ function assignPlayer(info) {
 function scoutPlayer(t) {
   teamsDB
     .doc(t)
-    .get()
-    .then((doc) => {
-      tempList = doc.data().member;
-      tempList.push(lotteryPlayer.Name);
-      teamsDB.doc(t).set({ member: tempList });
-      console.log("scouted to", t);
-    });
+    .update({
+      member: firebase.firestore.FieldValue.arrayUnion(lotteryPlayer.Name),
+    })
+    .then(console.log("scouted to", t));
 }
 
 function paintScoutedPlayer() {
@@ -43,13 +40,7 @@ function paintScoutedPlayer() {
 function pointCalculation(t, p) {
   pointsDB
     .doc(t)
-    .get()
-    .then((doc) => {
-      x = doc.data();
-      pointsDB.doc(t).set({
-        point: x.point - p,
-      });
-    });
+    .update({ point: firebase.firestore.FieldValue.increment(-p) });
 }
 
 function paintRemainingPoint() {

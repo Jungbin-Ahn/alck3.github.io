@@ -10,7 +10,7 @@ const firebaseApp = firebase.initializeApp({
 });
 
 const db = firebaseApp.firestore();
-const playersDB = db.collection("players");
+const playersDB = db.collection("players").doc("players");
 
 function readExcel() {
   let input = event.target;
@@ -38,36 +38,29 @@ function resetAll() {
 }
 
 function sendPlayerToDB(playerslist) {
-  for (let i = 0; i < playerslist.length; i++) {
-    lotteryIndex.push(i);
-    playersDB
-      .doc(`player${i}`)
-      .set(playerslist[i])
-      .then(() => {
-        console.log("Successfully written");
-      });
-  }
+  playersDB.set({ playerslist }).then(() => {
+    console.log("successfully written");
+  });
 }
 
 function paintPlayersDB() {
   playerList.innerText = "";
-  playersDB.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      console.log("함수");
+  playersDB.get().then((doc) => {
+    for (let i = 0; i < doc.data().playerslist.length; i++) {
       const span = document.createElement("span");
-      span.innerText = doc.data().Name;
+      span.innerText = doc.data().playerslist[i].Name;
       playerList.appendChild(span);
-    });
+    }
   });
   console.log("players painted");
 }
-playersDB.onSnapshot((snapshot) => {
+
+paintPlayersDB();
+db.collection("players").onSnapshot((snapshot) => {
   snapshot.docChanges().forEach((change) => {
-    if (change.type === "removed") {
-      console.log("리스너");
-      playerList.innerText = "";
+    if (change.type === "modified") {
+      console.log("modified");
       paintPlayersDB();
     }
   });
 });
-paintPlayersDB();
