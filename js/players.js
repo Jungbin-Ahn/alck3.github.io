@@ -56,6 +56,7 @@ function paintPlayersDB() {
 }
 
 paintPlayersDB();
+
 db.collection("players").onSnapshot((snapshot) => {
   snapshot.docChanges().forEach((change) => {
     if (change.type === "modified") {

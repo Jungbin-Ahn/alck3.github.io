@@ -5,6 +5,7 @@ const point = document.querySelector("#point");
 
 const teamsDB = db.collection("team");
 const pointsDB = db.collection("point");
+let lotteryPlayer;
 
 function assignPlayer(info) {
   info.preventDefault();

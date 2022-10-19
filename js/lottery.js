@@ -16,7 +16,7 @@ function randomNumberGenerator() {
           doc.data().playerslist[
             Math.floor(Math.random() * doc.data().playerslist.length)
           ];
-        console.log(arr);
+        lotteryPlayer = arr;
         playersDB.update({
           playerslist: firebase.firestore.FieldValue.arrayRemove(arr),
         });
@@ -38,7 +38,6 @@ function paintPlayerToCenter() {
     .doc("selected")
     .get()
     .then((doc) => {
-      
       playerName.innerText = `이름: ${doc.data().Name}`;
       playerId.innerText = `소환사명: ${doc.data().ID}`;
       tier.innerText = `티어: ${doc.data().Tier}`;
