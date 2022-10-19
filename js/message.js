@@ -1,4 +1,4 @@
-const messageDB = db.collection('message').doc('message');
+const database = firebase.database();
 
 function sendMessage(){
     messageDB

@@ -176,8 +176,6 @@ header {
 
 }
 
-
-
 .player-info button {
   width: 100px;
   background-color: rgba(226, 235, 110, 0.5);
@@ -229,11 +227,16 @@ header {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-#chat {
+#maxbid {
+  display: flex;
+  font-family: "Orbitron", sans-serif;
   height: 100px;
-  width: 500px;
-  background-color: white;
-  overflow-y: scroll;
+  width: 560px;
+  font-size: 30px;
+  color: aliceblue;
+  background-color: transparent;
+  margin: 10px 0;
+  justify-content: center;
 }
 
 
@@ -241,7 +244,7 @@ header {
   display: grid;
   grid-template-rows: 1fr 1fr;
   align-items: flex-start;
-  font-family: "Retrosans";
+  font-family: "Orbitron", sans-serif;
 }
 
 #right h2 {
