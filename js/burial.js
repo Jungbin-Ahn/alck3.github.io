@@ -7,14 +7,10 @@ function sendToBurialList() {
   if (playerName.innerText === "") {
     alert("플레이어를 추첨해주세요!");
   } else {
-    burialsDB.get().then((doc) => {
-      if (doc.exist) {
-        burialsDB.update({
-          playerslist: firebase.firestore.FieldValue.arrayUnion(lotteryPlayer),
-        });
-      } else {
-        burialsDB.set({ playerslist: lotteryPlayer });
-      }
+    selectedDB.get().then((doc) => {
+      burialsDB.update({
+        playerslist: firebase.firestore.FieldValue.arrayUnion(doc.data()),
+      });
     });
   }
 }
@@ -22,9 +18,7 @@ function sendToBurialList() {
 function sendBurialToPlayer() {
   burialsDB.get().then((doc) => {
     if (doc.data().playerslist.length !== 0) {
-      playersDB.update({
-        playerslist: firebase.firestore.FieldValue.arrayUnion(doc.data()),
-      });
+      playersDB.set({ playerslist: doc.data().playerslist });
       burialsDB.update({ playerslist: [] });
     } else {
       alert("유찰자가 없습니다!");
@@ -37,20 +31,26 @@ function sendBurialToPlayer() {
 }
 
 function paintBurialPlayers() {
-  console.log("bural painted");
+  console.log("burial painted");
   burialList.innerText = "";
   burialsDB.get().then((doc) => {
     for (let i = 0; i < doc.data().playerslist.length; i++) {
       const span = document.createElement("span");
       span.innerText = doc.data().playerslist[i].Name;
-      playerList.appendChild(span);
+      burialList.appendChild(span);
     }
   });
 }
 
 burialButton.addEventListener("click", sendToBurialList);
 burialToPlayerButton.addEventListener("click", sendBurialToPlayer);
-burialsDB.onSnapshot((doc) => {
-  resetPlayerSlot();
-  paintBurialPlayers();
+
+db.collection("burials").onSnapshot((snapshot) => {
+  snapshot.docChanges().forEach((change) => {
+    if (change.type === "modified") {
+      console.log("modified");
+      paintBurialPlayers();
+      resetPlayerSlot();
+    }
+  });
 });

@@ -5,37 +5,9 @@ const tier = document.querySelector("#tier");
 const position = document.querySelector("#position");
 const champion = document.querySelector("#champion");
 const intro = document.querySelector("#intro");
-let lotteryIndex = [];
-let lotteryPlayer;
 const selectedDB = db.collection("selectedplayer").doc("selected");
 
 function randomNumberGenerator() {
-  // playersDB.get().then((snap) => {
-  //   arr = lotteryIndex[Math.floor(Math.random() * lotteryIndex.length)];
-  //   console.log(arr);
-  //   playersDB
-  //     .doc(`player${arr}`)
-  //     .get()
-  //     .then((doc) => {
-  //       if (doc.exists) {
-  //         db.collection("selectedplayer")
-  //           .doc("selected")
-  //           .set(doc.data())
-  //           .then();
-  //         playersDB
-  //           .doc(`player${arr}`)
-  //           .delete()
-  //           .then(() => {
-  //             lotteryIndex.splice(lotteryIndex.indexOf(arr), 1);
-  //             console.log(arr, " deleted", "=> ", lotteryIndex);
-  //           });
-  //       } else {
-  //         alert("본 추첨 끝!!");
-  //         resetPlayerSlot();
-  //         burialToPlayerButton.classList.remove("hidden");
-  //       }
-  //     });
-  // });
   playersDB
     .get()
     .then((doc) => {
@@ -66,7 +38,7 @@ function paintPlayerToCenter() {
     .doc("selected")
     .get()
     .then((doc) => {
-      lotteryPlayer = doc.data();
+      
       playerName.innerText = `이름: ${doc.data().Name}`;
       playerId.innerText = `소환사명: ${doc.data().ID}`;
       tier.innerText = `티어: ${doc.data().Tier}`;

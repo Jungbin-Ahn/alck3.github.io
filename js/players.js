@@ -25,7 +25,7 @@ function readExcel() {
       sendPlayerToDB(temp);
     });
   };
-  paintPlayersDB();
+  resetPlayerSlot();
   reader.readAsBinaryString(input.files[0]);
 }
 
