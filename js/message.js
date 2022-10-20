@@ -46,6 +46,6 @@ db.ref("post/").on("child_changed", (snapshot) => {
   const data = snapshot.val();
   console.log(snapshot);
   const span = document.createElement("span");
-  span.innerText = snapshot.key + " " + data.message + "\n";
+  span.innerText = snapshot.key + " " + data.message;
   messageSection.appendChild(span);
 });
