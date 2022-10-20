@@ -7,6 +7,7 @@ let timer;
 
 function showAlert() {
   alert("시간초과!");
+
 }
 
 function startTimer() {

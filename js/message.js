@@ -7,42 +7,48 @@ const firebaseApp = firebase.initializeApp({
   messagingSenderId: "89179356630",
   appId: "1:89179356630:web:12ac618cf29459633cb877",
 });
-const teamSelect = document.querySelector("#team-number");
+const teamSelect = document.querySelector("#team-ii");
 const messageSection = document.querySelector("#message-section");
 const messageForm = document.querySelector("#message-form");
 const messageInput = document.querySelector("#message-form input");
 const messageBtn = document.querySelector("#message-form button");
 
-const db = firebaseApp.database();
+const rdb = firebaseApp.database();
 
 function sendMessageToDB(info) {
   info.preventDefault();
-  db.ref()
+  rdb.ref()
     .get()
     .then((snapshot) => {
       if (parseInt(snapshot.val().MAX) < parseInt(messageInput.value)) {
-        db.ref("post/" + teamSelect.value)
+        rdb.ref("post/" + teamSelect.value)
           .set({ message: messageInput.value })
           .then(() => {
             console.log("written!");
-            db.ref().update({ MAX: messageInput.value });
+            rdb.ref().update({ MAX: messageInput.value });
           });
       } else {
         alert("PUT MORE POINT");
       }
     });
 }
+function paintAuctionEnd(){
+    const span = document.createElement("span");
+    span.innerText = '-----경매종료-----';
+    messageSection.appendChild(span);  
+    resetMessages();
+}
 
 function resetMessages() {
-  db.ref().set({ MAX: 0 });
+  rdb.ref().set({ MAX: 0 });
   for (let i = 1; i < 9; ++i) {
-    db.ref("post/" + `TEAM${i}`).set({ message: 0 });
+    rdb.ref("post/" + `TEAM${i}`).set({ message: 0 });
   }
 }
 
 messageForm.addEventListener("submit", sendMessageToDB);
 
-db.ref("post/").on("child_changed", (snapshot) => {
+rdb.ref("post/").on("child_changed", (snapshot) => {
   const data = snapshot.val();
   console.log(snapshot);
   const span = document.createElement("span");

@@ -10,22 +10,27 @@
 </head>
 
 <body>
+    <video autoplay muted loop>
+        <source src="./resource/ionia.mp4" type="video/mp4" />
+    </video>
     <div id="message">
         <div id="message-section"></div>
-        <select id="team-number">
-            <option value="TEAM1">TEAM 1</option>
-            <option value="TEAM2">TEAM 2</option>
-            <option value="TEAM3">TEAM 3</option>
-            <option value="TEAM4">TEAM 4</option>
-            <option value="TEAM5">TEAM 5</option>
-            <option value="TEAM6">TEAM 6</option>
-            <option value="TEAM7">TEAM 7</option>
-            <option value="TEAM8">TEAM 8</option>
-        </select>
-        <form id="message-form">
-            <input type="number" step="5" min="0" placeholder="포인트를 적어주세요" />
-            <button>Send</button>
-        </form>
+        <div id="input-section">
+            <select id="team-ii">
+                <option value="TEAM1">TEAM 1</option>
+                <option value="TEAM2">TEAM 2</option>
+                <option value="TEAM3">TEAM 3</option>
+                <option value="TEAM4">TEAM 4</option>
+                <option value="TEAM5">TEAM 5</option>
+                <option value="TEAM6">TEAM 6</option>
+                <option value="TEAM7">TEAM 7</option>
+                <option value="TEAM8">TEAM 8</option>
+            </select>
+            <form id="message-form">
+                <input type="number" step="5" min="0" placeholder="포인트를 적어주세요" />
+                <button>Send</button>
+            </form>
+        </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
