@@ -11,6 +11,11 @@ const firebaseApp = firebase.initializeApp({
 
 const db = firebaseApp.firestore();
 const playersDB = db.collection("players").doc("players");
+const headerBtn = document.querySelector("#headerBtn");
+const headerSection = document.querySelector("header");
+headerBtn.addEventListener("click", function () {
+  headerSection.classList.toggle("hidden");
+});
 
 function readExcel() {
   let input = event.target;

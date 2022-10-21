@@ -37,8 +37,11 @@ video {
 }
 
 button,
+#headerBtn,
 #scout select,
-#scout input {
+#scout input,
+#message select,
+#message input {
   width: 200px;
   font-size: medium;
   border: 2px solid black;
@@ -55,6 +58,21 @@ button:hover {
   color: aliceblue;
   box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
     7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+}
+#headerBtn {
+  position: fixed;
+  width: 40px;
+  left: 5px;
+  top: 5px;
+}
+
+header {
+  position: fixed;
+  display: flex;
+  top: 6px;
+  left: 50px;
+  gap: 50px;
+  justify-content: end;
 }
 
 .main {
@@ -103,13 +121,13 @@ h2 {
   grid-template-rows: repeat(8, 80px);
   gap: 10px;
 }
-#team{
+#team {
   justify-content: start;
   align-items: center;
-  font-family: 'Retrosans';
+  font-family: "Retrosans";
   margin-left: 40px;
 }
-#team span{
+#team span {
   font-size: 25px;
   color: aliceblue;
 }
@@ -145,35 +163,20 @@ h2 {
   justify-content: space-between;
 }
 
-h1 {
-  display: flex;
-  justify-content: center;
-  font-size: 90px;
-  margin-top: 20px;
-  margin-bottom: 0px;
-}
-
 h2 {
   font-size: 40px;
   margin-top: 0px;
   margin-bottom: 50px;
-
 }
 
-header {
-  display: flex;
-  gap: 50px;
-  justify-content: end;
-}
-
-.player-info {
+.player-info,
+#message-section {
   display: flex;
   flex-direction: column;
   width: 520px;
   height: 400px;
   background-color: rgba(255, 255, 255, 0.4);
   border: 2px solid black;
-
 }
 
 .player-info button {
@@ -188,14 +191,16 @@ header {
   font-weight: 700;
 }
 
-#scout {
+#scout,
+#input-section {
   display: flex;
   margin: 5px 0px;
   justify-content: center;
   gap: 5px;
 }
 
-#scout select {
+#scout select,
+#message select {
   text-align: center;
   width: auto;
   padding: 0 2px;
@@ -206,7 +211,8 @@ header {
   text-align: center;
 }
 
-#scout-form input::placeholder {
+#scout-form input::placeholder,
+#message input::placeholder  {
   color: black;
   text-align: center;
 }
@@ -227,18 +233,18 @@ header {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-#maxbid {
-  display: flex;
-  font-family: "Orbitron", sans-serif;
-  height: 100px;
-  width: 560px;
-  font-size: 30px;
+#message-section {
+  justify-content: flex-end;
+  align-items: center;
   color: aliceblue;
-  background-color: transparent;
-  margin: 10px 0;
-  justify-content: center;
+  overflow-y: hidden;
+  height: 200px;
 }
-
+#input-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
 
 #right {
   display: grid;
