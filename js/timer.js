@@ -30,7 +30,7 @@ function updateTimer() {
 function resetTimer() {
   timeDB.set({ time: 10 });
   TIME = 10;
-  time.innerText = TIME + "s";
+  time.innerText = TIME;
   stopTimer();
 }
 timerStartButton.addEventListener("click", startTimer);
@@ -38,7 +38,7 @@ timerResetButton.addEventListener("click", resetTimer);
 
 timeDB.on("child_changed", (snapshot) => {
   const timeData = snapshot.val();
-  time.innerText = timeData + "s";
+  time.innerText = timeData;
   if (timeData < 0) {
     showAlert();
     stopTimer();

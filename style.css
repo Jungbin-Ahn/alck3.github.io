@@ -25,7 +25,7 @@ video {
   width: 100vw;
   background-image: url("./resource/ALCK3.png");
   background-position-x: center;
-  background-position-y: 65%;
+  background-position-y: 35%;
   background-size: 400px;
   background-repeat: no-repeat;
   opacity: 0.5;
@@ -59,6 +59,7 @@ button:hover {
   box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
     7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
 }
+
 #headerBtn {
   position: fixed;
   width: 40px;
@@ -121,16 +122,19 @@ h2 {
   grid-template-rows: repeat(8, 80px);
   gap: 10px;
 }
+
 #team {
   justify-content: start;
   align-items: center;
   font-family: "Retrosans";
   margin-left: 40px;
 }
+
 #team span {
   font-size: 25px;
   color: aliceblue;
 }
+
 #point {
   justify-content: end;
 }
@@ -212,7 +216,7 @@ h2 {
 }
 
 #scout-form input::placeholder,
-#message input::placeholder  {
+#message input::placeholder {
   color: black;
   text-align: center;
 }
@@ -220,12 +224,17 @@ h2 {
 #timer {
   display: flex;
   justify-content: space-evenly;
+  align-items: flex-end;
   margin-bottom: 10px;
 }
 
 #timer span {
-  width: 50px;
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 80px;
+  font-size: 90px;
   font-weight: 700;
   text-align: center;
   border: 2px solid black;
@@ -233,17 +242,58 @@ h2 {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
+#timer button {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+#bur{
+  display: flex;
+  justify-content: space-between;
+}
+#burialButton{
+  background-color:  rgba(255, 0, 0, .6);
+}
+#burial-to-players{
+  background-color:  rgba(255, 255, 0, .6);
+}
 #message-section {
   justify-content: flex-end;
   align-items: center;
   color: aliceblue;
   overflow-y: hidden;
-  height: 200px;
+  height: 150px;
+  width: 530px;
 }
+
+#message select,
+#message input,
+#message button {
+  font-size: 20px;
+  color: yellow;
+  background-color: rgba(53, 190, 49,0.7);
+}
+#message select{
+  height: 47px;
+
+}
+#message input{
+  height: 40px;
+
+}
+#message button{
+  height: 48px;
+
+}
+
+#message input::placeholder {
+  color: yellow;
+  text-align: center;
+}
+
 #input-section {
   display: flex;
   justify-content: space-between;
-  margin: 5px;
 }
 
 #right {
