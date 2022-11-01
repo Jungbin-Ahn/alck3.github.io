@@ -8,20 +8,29 @@ const rdb = firebaseApp.database();
 
 function sendMessageToDB(info) {
   info.preventDefault();
-  rdb
-    .ref()
+  pointsDB
+    .doc(teamSelectii.value)
     .get()
-    .then((snapshot) => {
-      if (parseInt(snapshot.val().MAX) < parseInt(messageInput.value)) {
-        rdb
-          .ref("post/" + teamSelectii.value)
-          .set({ message: messageInput.value })
-          .then(() => {
-            console.log("written!");
-            rdb.ref().update({ MAX: messageInput.value });
-          });
+    .then((doc) => {
+      if (doc.data().point < parseInt(messageInput.value)) {
+        // alert("not enough points");
       } else {
-        alert("PUT MORE POINT");
+        rdb
+          .ref()
+          .get()
+          .then((snapshot) => {
+            if (parseInt(snapshot.val().MAX) < parseInt(messageInput.value)) {
+              rdb
+                .ref("post/" + teamSelectii.value)
+                .set({ message: messageInput.value })
+                .then(() => {
+                  rdb.ref().update({ MAX: messageInput.value });
+                });
+            } 
+            // else {
+            //   alert("PUT MORE POINT");
+            // }
+          });
       }
     });
 }
@@ -35,8 +44,8 @@ function paintAuctionEnd() {
 
 function resetMessages() {
   rdb.ref().set({ MAX: 0 });
-  for (let i = 1; i < 9; ++i) {
-    rdb.ref("post/" + `TEAM${i}`).set({ message: 0 });
+  for (let i = 0; i < 6; ++i) {
+    rdb.ref("post/" + teamList[i]).set({ message: 0 });
   }
 }
 

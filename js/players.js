@@ -1,4 +1,6 @@
 const playerList = document.querySelector("#player-list");
+const teamList = ['김윤서팀','김재민팀','류지민팀','송승우팀','안현진팀','홍순원팀']
+const aList = [1000, 1120, 1090, 1090, 1060, 1000]
 const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyDwBA0U9iQqRtYwKNDv3j96zYOnQXnBpxg",
   authDomain: "alck-f0c35.firebaseapp.com",

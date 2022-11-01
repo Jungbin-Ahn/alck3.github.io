@@ -32,7 +32,7 @@ function paintScoutedPlayer() {
     querySnapshot.forEach((doc) => {
       let teamSection = document.querySelector(`#team :nth-child(${i})`);
       teamSection.innerHTML = doc.data().member;
-      teamSection.innerHTML = teamSection.innerHTML.replaceAll(",", " | ");
+      teamSection.innerHTML = teamSection.innerHTML.replaceAll(",", "     |     ");
       i++;
     });
   });
@@ -45,32 +45,32 @@ function pointCalculation(t, p) {
 }
 
 function paintRemainingPoint() {
-  for (let i = 1; i < 9; i++) {
+  for (let i = 1; i < 7; i++) {
     const pointDiv = point.querySelector(`div:nth-child(${i})`);
     const pointFirstSpan = pointDiv.querySelector("div :first-child");
     const pointSecondSpan = pointDiv.querySelector("div :last-child");
     pointsDB
-      .doc(`TEAM${i}`)
+      .doc(teamList[i-1])
       .get()
       .then((doc) => {
         temp = doc.data();
         pointSecondSpan.innerText = temp.point;
-        pointFirstSpan.innerText = `Team ${i}`;
+        pointFirstSpan.innerText = teamList[i-1];
       });
   }
   console.log("remaining point painted");
 }
 
 function resetPoints() {
-  for (var i = 1; i < 9; i++) {
-    pointsDB.doc(`TEAM${i}`).set({ point: 1000 });
+  for (var i = 0; i < 6; i++) {
+    pointsDB.doc(teamList[i]).set({ point: aList[i] });
   }
   paintRemainingPoint();
 }
 
 function resetPlayers() {
-  for (var i = 1; i < 9; i++) {
-    teamsDB.doc(`TEAM${i}`).set({ member: [] });
+  for (var i =0; i < 6; i++) {
+    teamsDB.doc(teamList[i]).set({ member: [] });
   }
   paintRemainingPoint();
 }
