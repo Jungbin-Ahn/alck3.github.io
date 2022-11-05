@@ -4,7 +4,6 @@ const playerId = document.querySelector("#playerid");
 const tier = document.querySelector("#tier");
 const position = document.querySelector("#position");
 const champion = document.querySelector("#champion");
-const intro = document.querySelector("#intro");
 const selectedDB = db.collection("selectedplayer").doc("selected");
 
 function randomNumberGenerator() {
@@ -42,7 +41,6 @@ function paintPlayerToCenter() {
       playerId.innerText = `소환사명: ${doc.data().ID}`;
       tier.innerText = `티어: ${doc.data().Tier}`;
       position.innerText = `포지션: ${doc.data().Position}`;
-      intro.innerText = `자기소개: ${doc.data().Intro}`;
     });
 }
 
