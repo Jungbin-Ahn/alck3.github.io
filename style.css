@@ -93,7 +93,6 @@ header {
 }
 
 #team-table {
-  font-size: 24px;
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr 8fr;
@@ -131,7 +130,7 @@ h2 {
 }
 
 #team span {
-  font-size: 35px;
+  font-size: 27px;
   color: aliceblue;
 }
 
@@ -147,7 +146,6 @@ h2 {
   grid-template-rows: repeat(2, 1fr);
   color: aliceblue;
   font-size: 20px;
-  background-color: rgba(0, 0, 0, 0.2);
   height: 80px;
 }
 #point-status:nth-child(1){
@@ -220,8 +218,9 @@ h2 {
 }
 
 .player-info span {
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 700;
+  margin: 10px;
 }
 
 #scout,
