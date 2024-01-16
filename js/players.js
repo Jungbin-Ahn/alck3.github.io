@@ -1,5 +1,5 @@
 const playerList = document.querySelector("#player-list");
-const teamList = ['김민혁팀','안상원팀','김병우팀','심민석팀','김인수팀','홍순원팀','이용준팀','장민혁팀']
+const teamList = ['김민혁팀','김병우팀','김인수팀','심민석팀','안상원팀','이용준팀','장민혁팀','홍순원팀']
 const aList = [1000, 1120, 1090, 1090, 1120, 1000, 1000, 1000]
 const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyDwBA0U9iQqRtYwKNDv3j96zYOnQXnBpxg",
