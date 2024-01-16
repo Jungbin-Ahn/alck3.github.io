@@ -44,7 +44,7 @@ function paintAuctionEnd() {
 
 function resetMessages() {
   rdb.ref().set({ MAX: 0 });
-  for (let i = 0; i < 6; ++i) {
+  for (let i = 0; i < 8; ++i) {
     rdb.ref("post/" + teamList[i]).set({ message: 0 });
   }
 }
