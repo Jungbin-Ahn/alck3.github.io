@@ -45,7 +45,7 @@ function pointCalculation(t, p) {
 }
 
 function paintRemainingPoint() {
-  for (let i = 1; i < 7; i++) {
+  for (let i = 1; i < 9; i++) {
     const pointDiv = point.querySelector(`div:nth-child(${i})`);
     const pointFirstSpan = pointDiv.querySelector("div :first-child");
     const pointSecondSpan = pointDiv.querySelector("div :last-child");
@@ -62,14 +62,14 @@ function paintRemainingPoint() {
 }
 
 function resetPoints() {
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < 8; i++) {
     pointsDB.doc(teamList[i]).set({ point: aList[i] });
   }
   paintRemainingPoint();
 }
 
 function resetPlayers() {
-  for (var i =0; i < 6; i++) {
+  for (var i =0; i < 8; i++) {
     teamsDB.doc(teamList[i]).set({ member: [] });
   }
   paintRemainingPoint();
