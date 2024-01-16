@@ -177,6 +177,14 @@ h2 {
 
   background-color: rgb(33,150,233,.5);
 }
+#point-status:nth-child(7){
+
+  background-color: rgb(33,150,233,.5);
+}
+#point-status:nth-child(8){
+
+  background-color: rgb(33,150,233,.5);
+}
 
 #point-status span {
   display: flex;
