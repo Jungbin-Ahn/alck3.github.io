@@ -41,4 +41,12 @@ scout.js
 	
 timer.js v
 burial.js v
+
+
+
+top	이용준 김민혁
+jg   	홍순원
+mid 	심민석 김인수
+adc 	김병우 
+sup 	장민혁 안상원
 	
