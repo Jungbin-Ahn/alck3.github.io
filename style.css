@@ -23,7 +23,7 @@ video {
   position: absolute;
   height: 100vh;
   width: 100vw;
-  background-image: url("./resource/ALCK3.png");
+  background-image: url("./resource/ALCK Auction Background jpeg.jpeg");
   background-position-x: center;
   background-position-y: 35%;
   background-size: 400px;
@@ -150,40 +150,40 @@ h2 {
 }
 #point-status:nth-child(1){
 
-  background-color: rgba(48,117,69,.5);
+  background-color: rgba(161,176,231,.5);
 }
 
 #point-status:nth-child(2){
 
-  background-color: rgba(140,200,237,.5);
+  background-color: rgba(255,197,122,.5);
 }
 
 #point-status:nth-child(3){
 
-  background-color: rgba(217,107,206,.5);
+  background-color: rgba(220,197,135,.5);
 }
 
 #point-status:nth-child(4){
 
-  background-color: rgba(255,143,10,.5);
+  background-color: rgba(155,218,231,.5);
 }
 
 #point-status:nth-child(5){
 
-  background-color: rgba(230,67,61,.5);
+  background-color: rgba(251,164,189,.5);
 }
 
 #point-status:nth-child(6){
 
-  background-color: rgb(33,150,233,.5);
+  background-color: rgb(203,234,143,.5);
 }
 #point-status:nth-child(7){
 
-  background-color: rgb(103,88,93,.5);
+  background-color: rgb(203,140,234,.5);
 }
 #point-status:nth-child(8){
 
-  background-color: rgb(151,236,171,.5);
+  background-color: rgb(218,109,124,.5);
 }
 
 #point-status span {
