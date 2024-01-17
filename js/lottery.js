@@ -38,8 +38,8 @@ function paintPlayerToCenter() {
     .get()
     .then((doc) => {
       playerName.innerText = `이름: ${doc.data().Name}`;
-      playerId.innerText = `소환사명: ${doc.data().ID}`;
-      tier.innerText = `티어: ${doc.data().Tier}`;
+      playerId.innerText = `ID: ${doc.data().ID}`;
+      tier.innerText = `Tier: ${doc.data().Tier}`;
       position.innerText = `포지션: ${doc.data().Position}`;
     });
 }
