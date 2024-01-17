@@ -18,7 +18,15 @@ video {
   left: 0px;
   filter: brightness(0.8);
 }
-
+.bgImage{
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    background-position: center center;
+    z-index: -1;
+    animation: fadein 2s;
+}
 .logo {
   position: absolute;
   height: 100vh;
