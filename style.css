@@ -106,10 +106,6 @@ h2 {
 #team-table h2 {
   margin-bottom: 0px;
   padding: 5px;
-  background-image: url("./resource/border.png");
-  background-size: 150px 120px;
-  background-repeat: no-repeat;
-  background-position: center center;
   color: aliceblue;
   grid-column: 2/3;
 }
@@ -345,10 +341,6 @@ h2 {
   font-size: 40px;
   margin-top: 25px;
   padding: 5px;
-  background-image: url("./resource/border.png");
-  background-size: 150px 120px;
-  background-repeat: no-repeat;
-  background-position: center center;
   color: aliceblue;
 }
 
